@@ -72,59 +72,11 @@ bilibili-mp3/
 
 ## API 文档
 
-### POST /api/download
-开始提取任务
+详细的 API 文档请查看 [API.md](./API.md)。
 
-**请求体:**
-```json
-{
-  "url": "https://www.bilibili.com/video/BV...",
-  "options": {
-    "naming": "INDEX-TITLE-AUTHOR",
-    "skipMp3": false
-  }
-}
-```
+## 开发统计
 
-**响应:**
-```json
-{
-  "taskId": "uuid",
-  "status": "pending"
-}
-```
-
-### POST /api/download-collection
-开始合集提取任务
-
-### GET /api/tasks
-获取所有任务列表
-
-### GET /api/tasks/:id
-获取指定任务详情
-
-### DELETE /api/tasks/:id
-取消任务
-
-### DELETE /api/tasks
-清除所有任务
-
-### GET /api/download/:id/file
-下载 MP3 文件
-
-## WebSocket 事件
-
-- `task-progress`: 任务进度更新
-- `task-complete`: 任务完成
-- `task-error`: 任务错误
-
-## 环境变量
-
-| 变量 | 描述 | 默认值 |
-|------|------|--------|
-| PORT | 后端端口 | 3000 |
-| NODE_ENV | 运行环境 | development |
-| DOWNLOAD_DIR | 下载目录 | ./downloads |
+本项目使用 AI 辅助开发，详细的 AI Coding 指标统计请查看 [AI_CODING_STATS.md](./AI_CODING_STATS.md)。
 
 ## 致谢
 
