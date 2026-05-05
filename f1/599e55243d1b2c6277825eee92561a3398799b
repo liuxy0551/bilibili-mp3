@@ -1,0 +1,33 @@
+frontend/src/components/ProgressBar.tsx
+  035ae2530350c9c0 1-62
+frontend/src/components/UrlInput.tsx
+  035ae2530350c9c0 1-76
+frontend/src/components/TaskItem.tsx
+  035ae2530350c9c0 1-100
+frontend/src/components/SettingsPanel.tsx
+  035ae2530350c9c0 1-77
+frontend/src/context/TaskContext.tsx
+  035ae2530350c9c0 38
+frontend/src/components/TaskList.tsx
+  035ae2530350c9c0 1-52
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "f1599e55243d1b2c6277825eee92561a3398799b",
+  "prompts": {
+    "035ae2530350c9c0": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_20921485effe203pbIa7QIWJFJ",
+        "model": "mimo/mimo-v2.5-pro"
+      },
+      "human_author": "liuyi",
+      "messages": [],
+      "total_additions": 368,
+      "total_deletions": 1,
+      "accepted_lines": 368,
+      "overriden_lines": 0
+    }
+  }
+}
