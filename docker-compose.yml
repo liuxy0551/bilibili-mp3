@@ -4,7 +4,7 @@ services:
   frontend:
     image: registry.cn-hangzhou.aliyuncs.com/liuxy0551/bilibili-mp3-frontend:latest
     ports:
-      - "8080:80"
+      - "5173:80"
     depends_on:
       - backend
     networks:
@@ -13,8 +13,8 @@ services:
 
   backend:
     image: registry.cn-hangzhou.aliyuncs.com/liuxy0551/bilibili-mp3-backend:latest
-    ports:
-      - "3000:3000"
+    # ports:
+    #   - "3000:3000"
     volumes:
       - downloads:/app/downloads
     environment:
