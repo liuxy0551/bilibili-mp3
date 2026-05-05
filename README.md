@@ -21,11 +21,18 @@
 git clone https://github.com/liuxy0551/bilibili-mp3.git
 cd bilibili-mp3
 
-# 启动服务
+# 启动服务（使用预构建镜像）
 docker-compose up -d
 
 # 访问应用
 open http://localhost
+```
+
+### 使用 Docker Compose（从源码构建）
+
+```bash
+# 使用 dev 配置从源码构建
+docker-compose -f docker-compose.dev.yml up -d
 ```
 
 ### 开发环境

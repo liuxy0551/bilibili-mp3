@@ -2,7 +2,9 @@ version: '3.8'
 
 services:
   frontend:
-    image: registry.cn-hangzhou.aliyuncs.com/liuxy0551/bilibili-mp3-frontend:latest
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     ports:
       - "80:80"
     depends_on:
@@ -12,7 +14,9 @@ services:
     restart: unless-stopped
 
   backend:
-    image: registry.cn-hangzhou.aliyuncs.com/liuxy0551/bilibili-mp3-backend:latest
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"
     volumes:
