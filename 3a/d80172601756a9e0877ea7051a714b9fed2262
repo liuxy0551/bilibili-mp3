@@ -1,0 +1,35 @@
+nginx/default.conf
+  4e9c52992c788c5e 1-28
+.dockerignore
+  4e9c52992c788c5e 1-5
+frontend/Dockerfile
+  4e9c52992c788c5e 1-21
+backend/Dockerfile
+  4e9c52992c788c5e 1-21
+docker-compose.yml
+  4e9c52992c788c5e 1-35
+docker-compose.prod.yml
+  4e9c52992c788c5e 1-37
+frontend/nginx.conf
+  4e9c52992c788c5e 1-28
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "3ad80172601756a9e0877ea7051a714b9fed2262",
+  "prompts": {
+    "4e9c52992c788c5e": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_20917c0e2ffeNyKRiL4Mke7kFV",
+        "model": "mimo/mimo-v2.5-pro"
+      },
+      "human_author": "liuyi",
+      "messages": [],
+      "total_additions": 175,
+      "total_deletions": 0,
+      "accepted_lines": 175,
+      "overriden_lines": 0
+    }
+  }
+}
