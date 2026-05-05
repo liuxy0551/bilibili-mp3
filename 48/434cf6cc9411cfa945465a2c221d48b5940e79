@@ -1,0 +1,27 @@
+README.md
+  2954e9b7cbd411df 1-113
+build.sh
+  2954e9b7cbd411df 1-13
+.gitignore
+  2954e9b7cbd411df 1,3-9,11-14,17-30
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "48434cf6cc9411cfa945465a2c221d48b5940e79",
+  "prompts": {
+    "2954e9b7cbd411df": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_209165bf9ffe1JRtFz7nerJJbT",
+        "model": "mimo/mimo-v2.5-pro"
+      },
+      "human_author": "liuyi",
+      "messages": [],
+      "total_additions": 152,
+      "total_deletions": 0,
+      "accepted_lines": 152,
+      "overriden_lines": 0
+    }
+  }
+}
