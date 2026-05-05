@@ -4,7 +4,7 @@ services:
   frontend:
     image: registry.cn-hangzhou.aliyuncs.com/liuxy0551/bilibili-mp3-frontend:latest
     ports:
-      - "80:80"
+      - "8080:80"
     depends_on:
       - backend
     networks:

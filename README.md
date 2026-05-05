@@ -25,7 +25,7 @@ cd bilibili-mp3
 docker-compose up -d
 
 # 访问应用
-open http://localhost
+open http://localhost:8080
 ```
 
 ### 使用 Docker Compose（从源码构建）
