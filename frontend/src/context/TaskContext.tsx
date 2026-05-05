@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useCallback, useEffect } from 'react'
 import { Task } from '../types'
 import { useWebSocket } from '../hooks/useWebSocket'
+import { useSettings } from './SettingsContext'
 import * as api from '../services/api'
 
 interface TaskContextType {
@@ -20,6 +21,7 @@ export function TaskProvider({ children }: { children: React.ReactNode }) {
   const [tasks, setTasks] = useState<Task[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const { settings } = useSettings()
 
   const refreshTasks = useCallback(async () => {
     setLoading(true)
@@ -59,23 +61,23 @@ export function TaskProvider({ children }: { children: React.ReactNode }) {
 
   const addTask = useCallback(async (url: string) => {
     setError(null)
-    const result = await api.startDownload(url)
+    const result = await api.startDownload(url, { naming: settings.naming })
     if (result.success) {
       await refreshTasks()
     } else {
       setError(result.error || '创建任务失败')
     }
-  }, [refreshTasks])
+  }, [refreshTasks, settings.naming])
 
   const addCollectionTask = useCallback(async (url: string) => {
     setError(null)
-    const result = await api.startCollectionDownload(url)
+    const result = await api.startCollectionDownload(url, { naming: settings.naming })
     if (result.success) {
       await refreshTasks()
     } else {
       setError(result.error || '创建合集任务失败')
     }
-  }, [refreshTasks])
+  }, [refreshTasks, settings.naming])
 
   const removeTask = useCallback(async (taskId: string) => {
     setError(null)

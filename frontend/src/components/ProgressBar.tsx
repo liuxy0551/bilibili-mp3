@@ -27,7 +27,7 @@ export default function ProgressBar({ progress, status, className }: ProgressBar
       case 'pending':
         return '等待中'
       case 'downloading':
-        return `下载中 ${progress}%`
+        return `提取中 ${progress}%`
       case 'converting':
         return '转换中'
       case 'completed':

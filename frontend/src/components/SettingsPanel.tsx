@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useSettings } from '../context/SettingsContext'
 import { Settings, ChevronDown, ChevronUp } from 'lucide-react'
+import { useState } from 'react'
 
 interface SettingsPanelProps {
   variant?: 'full' | 'compact'
@@ -7,8 +8,7 @@ interface SettingsPanelProps {
 
 export default function SettingsPanel({ variant = 'full' }: SettingsPanelProps) {
   const [isOpen, setIsOpen] = useState(variant === 'full')
-  const [naming, setNaming] = useState('INDEX-TITLE-AUTHOR')
-  const [threads, setThreads] = useState(10)
+  const { settings, updateSettings } = useSettings()
 
   if (variant === 'compact') {
     return (
@@ -33,8 +33,8 @@ export default function SettingsPanel({ variant = 'full' }: SettingsPanelProps) 
                     文件命名规则
                   </label>
                   <select
-                    value={naming}
-                    onChange={(e) => setNaming(e.target.value)}
+                    value={settings.naming}
+                    onChange={(e) => updateSettings({ naming: e.target.value })}
                     className="w-full px-2 py-1.5 text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
                   >
                     <option value="INDEX-TITLE-AUTHOR">序号-标题-作者</option>
@@ -47,14 +47,14 @@ export default function SettingsPanel({ variant = 'full' }: SettingsPanelProps) 
                 
                 <div>
                   <label className="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">
-                    下载线程数: {threads}
+                    提取线程数: {settings.threads}
                   </label>
                   <input
                     type="range"
                     min="1"
                     max="20"
-                    value={threads}
-                    onChange={(e) => setThreads(Number(e.target.value))}
+                    value={settings.threads}
+                    onChange={(e) => updateSettings({ threads: Number(e.target.value) })}
                     className="w-full"
                   />
                 </div>
@@ -92,8 +92,8 @@ export default function SettingsPanel({ variant = 'full' }: SettingsPanelProps) 
               文件命名规则
             </label>
             <select
-              value={naming}
-              onChange={(e) => setNaming(e.target.value)}
+              value={settings.naming}
+              onChange={(e) => updateSettings({ naming: e.target.value })}
               className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
             >
               <option value="INDEX-TITLE-AUTHOR">序号-标题-作者</option>
@@ -109,26 +109,26 @@ export default function SettingsPanel({ variant = 'full' }: SettingsPanelProps) 
           
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              下载线程数
+              提取线程数
             </label>
             <input
               type="range"
               min="1"
               max="20"
-              value={threads}
-              onChange={(e) => setThreads(Number(e.target.value))}
+              value={settings.threads}
+              onChange={(e) => updateSettings({ threads: Number(e.target.value) })}
               className="w-full"
             />
             <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400">
               <span>1</span>
-              <span>{threads}</span>
+              <span>{settings.threads}</span>
               <span>20</span>
             </div>
           </div>
           
           <div className="pt-2">
             <p className="text-xs text-gray-500 dark:text-gray-400">
-              注意: 设置将在下次下载时生效
+              注意: 设置将在下次提取时生效
             </p>
           </div>
         </div>

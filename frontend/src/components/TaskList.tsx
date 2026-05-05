@@ -36,10 +36,10 @@ export default function TaskList() {
       <div className="text-center py-12 bg-white dark:bg-gray-800 rounded-xl shadow-lg">
         <Inbox className="h-12 w-12 text-gray-400 mx-auto mb-4" />
         <p className="text-gray-500 dark:text-gray-400">
-          还没有下载任务
+          还没有提取任务
         </p>
         <p className="text-sm text-gray-400 dark:text-gray-500 mt-1">
-          输入 bilibili 视频链接开始下载
+          输入 bilibili 视频链接开始提取
         </p>
       </div>
     )
@@ -55,7 +55,7 @@ export default function TaskList() {
       
       <div className="flex items-center justify-between">
         <h2 className="text-lg font-semibold text-gray-800 dark:text-white">
-          下载任务 ({tasks.length})
+          提取任务 ({tasks.length})
         </h2>
         
         <div className="flex gap-2">

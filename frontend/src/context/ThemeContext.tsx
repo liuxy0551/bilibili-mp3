@@ -1,11 +1,11 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react'
 
-type Theme = 'light' | 'dark' | 'system'
+type Theme = 'light' | 'dark'
 
 interface ThemeContextType {
   theme: Theme
-  resolvedTheme: 'light' | 'dark'
   setTheme: (theme: Theme) => void
+  toggleTheme: () => void
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
@@ -13,53 +13,32 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setThemeState] = useState<Theme>(() => {
     if (typeof window !== 'undefined') {
-      return (localStorage.getItem('theme') as Theme) || 'system'
+      const saved = localStorage.getItem('theme') as Theme
+      if (saved) return saved
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
     }
-    return 'system'
+    return 'light'
   })
 
-  const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>('light')
-
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-    
-    const getResolvedTheme = (): 'light' | 'dark' => {
-      if (theme === 'system') {
-        return mediaQuery.matches ? 'dark' : 'light'
-      }
-      return theme
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
     }
-
-    const updateTheme = () => {
-      const resolved = getResolvedTheme()
-      setResolvedTheme(resolved)
-      
-      if (resolved === 'dark') {
-        document.documentElement.classList.add('dark')
-      } else {
-        document.documentElement.classList.remove('dark')
-      }
-    }
-
-    updateTheme()
-
-    const handler = () => {
-      if (theme === 'system') {
-        updateTheme()
-      }
-    }
-
-    mediaQuery.addEventListener('change', handler)
-    return () => mediaQuery.removeEventListener('change', handler)
+    localStorage.setItem('theme', theme)
   }, [theme])
 
   const setTheme = useCallback((newTheme: Theme) => {
     setThemeState(newTheme)
-    localStorage.setItem('theme', newTheme)
+  }, [])
+
+  const toggleTheme = useCallback(() => {
+    setThemeState(prev => prev === 'light' ? 'dark' : 'light')
   }, [])
 
   return (
-    <ThemeContext.Provider value={{ theme, resolvedTheme, setTheme }}>
+    <ThemeContext.Provider value={{ theme, setTheme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   )

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useTaskContext } from '../context/TaskContext'
-import { Download, Link, List } from 'lucide-react'
+import { AudioLines, Link, List } from 'lucide-react'
 
 export default function UrlInput() {
   const [url, setUrl] = useState('')
@@ -84,8 +84,8 @@ export default function UrlInput() {
             disabled={loading}
             className="flex-1 flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
-            <Download className="h-5 w-5 mr-2" />
-            {loading ? '处理中...' : '下载单个'}
+            <AudioLines className="h-5 w-5 mr-2" />
+            {loading ? '处理中...' : '提取单个'}
           </button>
           
           <button
@@ -95,7 +95,7 @@ export default function UrlInput() {
             className="flex-1 flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             <List className="h-5 w-5 mr-2" />
-            {loading ? '处理中...' : '下载合集'}
+            {loading ? '处理中...' : '提取合集'}
           </button>
         </div>
       </form>
