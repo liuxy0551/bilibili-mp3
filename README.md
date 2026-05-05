@@ -12,6 +12,10 @@
 - 现代简约的 UI 设计
 - 支持 Docker 一键部署
 
+## 截图展示
+
+![screenshot](./screenshot.png)
+
 ## 快速开始
 
 ### 使用 Docker Compose（推荐）
