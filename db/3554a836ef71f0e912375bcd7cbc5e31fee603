@@ -1,0 +1,27 @@
+docker-compose.yml
+  b5c412ec2653d339 7
+docker-compose.dev.yml
+  b5c412ec2653d339 9
+README.md
+  b5c412ec2653d339 28
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "db3554a836ef71f0e912375bcd7cbc5e31fee603",
+  "prompts": {
+    "b5c412ec2653d339": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_2093d55f7ffeJmFNnVtrXvHtlt",
+        "model": "mimo/mimo-v2.5-pro"
+      },
+      "human_author": "liuyi",
+      "messages": [],
+      "total_additions": 3,
+      "total_deletions": 3,
+      "accepted_lines": 3,
+      "overriden_lines": 0
+    }
+  }
+}
