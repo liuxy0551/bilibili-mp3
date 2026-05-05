@@ -13,7 +13,7 @@ if (!fs.existsSync(DOWNLOAD_DIR)) {
   fs.mkdirSync(DOWNLOAD_DIR, { recursive: true })
 }
 
-export async function startDownload(url: string, options?: { naming?: string; skipMp3?: boolean }): Promise<string> {
+export async function startDownload(url: string, options?: { naming?: string; skipMp3?: boolean; index?: number }): Promise<string> {
   const taskId = uuidv4()
   taskManager.createTask(taskId, url)
 
@@ -26,7 +26,7 @@ export async function startDownload(url: string, options?: { naming?: string; sk
   return taskId
 }
 
-async function processDownload(taskId: string, url: string, options?: { naming?: string; skipMp3?: boolean }): Promise<void> {
+async function processDownload(taskId: string, url: string, options?: { naming?: string; skipMp3?: boolean; index?: number }): Promise<void> {
   try {
     taskManager.updateTask(taskId, { status: 'downloading', progress: 0 })
 
@@ -44,7 +44,18 @@ async function processDownload(taskId: string, url: string, options?: { naming?:
 
     const date = new Date(videoData.ctime * 1000)
     const dateString = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
-    const baseFilename = `${title}-${author}-${dateString}`.replace(/[^\w\s-]/g, '')
+    
+    // 使用命名规则
+    const namingPattern = options?.naming || 'TITLE-AUTHOR-DATE'
+    const index = options?.index || p
+    const baseFilename = namingPattern
+      .replace('INDEX', String(index).padStart(3, '0'))
+      .replace('TITLE', title)
+      .replace('AUTHOR', author)
+      .replace('DATE', dateString)
+      .replace(/[<>:"/\\|?*]/g, '')  // 只移除文件系统不允许的字符
+      .replace(/^-*/, '')
+      .trim()
 
     const flvFile = path.join(DOWNLOAD_DIR, `${taskId}.flv`)
     const mp3File = path.join(DOWNLOAD_DIR, `${taskId}.mp3`)

@@ -1,10 +1,70 @@
 import { useState } from 'react'
 import { Settings, ChevronDown, ChevronUp } from 'lucide-react'
 
-export default function SettingsPanel() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [naming, setNaming] = useState('TITLE-AUTHOR-DATE')
+interface SettingsPanelProps {
+  variant?: 'full' | 'compact'
+}
+
+export default function SettingsPanel({ variant = 'full' }: SettingsPanelProps) {
+  const [isOpen, setIsOpen] = useState(variant === 'full')
+  const [naming, setNaming] = useState('INDEX-TITLE-AUTHOR')
   const [threads, setThreads] = useState(10)
+
+  if (variant === 'compact') {
+    return (
+      <div className="relative">
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+          title="设置"
+        >
+          <Settings className="h-5 w-5" />
+        </button>
+        
+        {isOpen && (
+          <>
+            <div className="fixed inset-0 z-40" onClick={() => setIsOpen(false)} />
+            <div className="absolute right-0 top-full mt-2 w-72 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 p-4 z-50 animate-fade-in">
+              <h3 className="font-medium text-gray-800 dark:text-white mb-3">设置</h3>
+              
+              <div className="space-y-3">
+                <div>
+                  <label className="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">
+                    文件命名规则
+                  </label>
+                  <select
+                    value={naming}
+                    onChange={(e) => setNaming(e.target.value)}
+                    className="w-full px-2 py-1.5 text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
+                  >
+                    <option value="INDEX-TITLE-AUTHOR">序号-标题-作者</option>
+                    <option value="INDEX-TITLE-AUTHOR-DATE">序号-标题-作者-日期</option>
+                    <option value="TITLE-AUTHOR-DATE">标题-作者-日期</option>
+                    <option value="TITLE">仅标题</option>
+                    <option value="INDEX-TITLE">序号-标题</option>
+                  </select>
+                </div>
+                
+                <div>
+                  <label className="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">
+                    下载线程数: {threads}
+                  </label>
+                  <input
+                    type="range"
+                    min="1"
+                    max="20"
+                    value={threads}
+                    onChange={(e) => setThreads(Number(e.target.value))}
+                    className="w-full"
+                  />
+                </div>
+              </div>
+            </div>
+          </>
+        )}
+      </div>
+    )
+  }
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
@@ -36,8 +96,9 @@ export default function SettingsPanel() {
               onChange={(e) => setNaming(e.target.value)}
               className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
             >
-              <option value="TITLE-AUTHOR-DATE">标题-作者-日期</option>
+              <option value="INDEX-TITLE-AUTHOR">序号-标题-作者</option>
               <option value="INDEX-TITLE-AUTHOR-DATE">序号-标题-作者-日期</option>
+              <option value="TITLE-AUTHOR-DATE">标题-作者-日期</option>
               <option value="TITLE">仅标题</option>
               <option value="INDEX-TITLE">序号-标题</option>
             </select>

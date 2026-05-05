@@ -42,6 +42,24 @@ export async function cancelTask(taskId: string): Promise<ApiResponse<void>> {
   }
 }
 
+export async function clearAllTasks(): Promise<ApiResponse<void>> {
+  try {
+    await api.delete('/tasks')
+    return { success: true }
+  } catch (error: any) {
+    return { success: false, error: error.response?.data?.message || error.message }
+  }
+}
+
+export async function startCollectionDownload(url: string, options?: DownloadOptions): Promise<ApiResponse<{ taskIds: string[]; count: number }>> {
+  try {
+    const response = await api.post('/download-collection', { url, options })
+    return { success: true, data: response.data }
+  } catch (error: any) {
+    return { success: false, error: error.response?.data?.message || error.message }
+  }
+}
+
 export function getDownloadUrl(taskId: string): string {
   return `/api/download/${taskId}/file`
 }

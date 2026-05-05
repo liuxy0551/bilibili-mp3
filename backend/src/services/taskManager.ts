@@ -37,6 +37,10 @@ class TaskManager {
   deleteTask(id: string): boolean {
     return this.tasks.delete(id)
   }
+
+  clearAllTasks(): void {
+    this.tasks.clear()
+  }
 }
 
 export const taskManager = new TaskManager()

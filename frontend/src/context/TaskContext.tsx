@@ -8,7 +8,9 @@ interface TaskContextType {
   loading: boolean
   error: string | null
   addTask: (url: string) => Promise<void>
+  addCollectionTask: (url: string) => Promise<void>
   removeTask: (taskId: string) => Promise<void>
+  clearAllTasks: () => Promise<void>
   refreshTasks: () => Promise<void>
 }
 
@@ -65,6 +67,16 @@ export function TaskProvider({ children }: { children: React.ReactNode }) {
     }
   }, [refreshTasks])
 
+  const addCollectionTask = useCallback(async (url: string) => {
+    setError(null)
+    const result = await api.startCollectionDownload(url)
+    if (result.success) {
+      await refreshTasks()
+    } else {
+      setError(result.error || '创建合集任务失败')
+    }
+  }, [refreshTasks])
+
   const removeTask = useCallback(async (taskId: string) => {
     setError(null)
     const result = await api.cancelTask(taskId)
@@ -75,8 +87,18 @@ export function TaskProvider({ children }: { children: React.ReactNode }) {
     }
   }, [])
 
+  const clearAllTasks = useCallback(async () => {
+    setError(null)
+    const result = await api.clearAllTasks()
+    if (result.success) {
+      setTasks([])
+    } else {
+      setError(result.error || '清除任务失败')
+    }
+  }, [])
+
   return (
-    <TaskContext.Provider value={{ tasks, loading, error, addTask, removeTask, refreshTasks }}>
+    <TaskContext.Provider value={{ tasks, loading, error, addTask, addCollectionTask, removeTask, clearAllTasks, refreshTasks }}>
       {children}
     </TaskContext.Provider>
   )
