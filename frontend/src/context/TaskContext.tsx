@@ -35,7 +35,7 @@ export function TaskProvider({ children }: { children: React.ReactNode }) {
     refreshTasks()
   }, [refreshTasks])
 
-  const { emit } = useWebSocket({
+  useWebSocket({
     onTaskProgress: useCallback((taskId: string, progress: number) => {
       setTasks(prev => prev.map(task =>
         task.id === taskId ? { ...task, progress } : task
