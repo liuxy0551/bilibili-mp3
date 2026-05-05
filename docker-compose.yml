@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - downloads:/app/downloads
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - DOWNLOAD_DIR=/app/downloads
+    networks:
+      - app-network
+
+volumes:
+  downloads:
+
+networks:
+  app-network:
+    driver: bridge
