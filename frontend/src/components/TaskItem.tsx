@@ -49,7 +49,7 @@ export default function TaskItem({ task }: TaskItemProps) {
             <h3 className="text-sm font-medium text-gray-900 dark:text-white truncate">
               {task.title || task.url}
             </h3>
-            {task.author && (
+            {task.author && task.status !== 'completed' && (
               <p className="text-xs text-gray-500 dark:text-gray-400">
                 {task.author}
               </p>
