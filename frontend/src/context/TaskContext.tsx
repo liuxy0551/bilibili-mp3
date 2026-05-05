@@ -28,7 +28,11 @@ export function TaskProvider({ children }: { children: React.ReactNode }) {
     setError(null)
     const result = await api.getTasks()
     if (result.success && result.data) {
-      setTasks(result.data)
+      // 按创建时间倒序排列，最新的在最上面
+      const sorted = result.data.sort((a, b) => 
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+      )
+      setTasks(sorted)
     } else {
       setError(result.error || '获取任务列表失败')
     }

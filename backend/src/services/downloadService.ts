@@ -48,9 +48,16 @@ async function processDownload(taskId: string, url: string, options?: { naming?:
     // 使用命名规则
     const namingPattern = options?.naming || 'TITLE-AUTHOR-DATE'
     const index = options?.index || p
+    
+    // 如果命名规则包含 INDEX，去掉标题中可能存在的前导序号
+    let cleanTitle = title
+    if (namingPattern.includes('INDEX')) {
+      cleanTitle = title.replace(/^\d+[-_.\s]*/, '')
+    }
+    
     const baseFilename = namingPattern
       .replace('INDEX', String(index).padStart(3, '0'))
-      .replace('TITLE', title)
+      .replace('TITLE', cleanTitle)
       .replace('AUTHOR', author)
       .replace('DATE', dateString)
       .replace(/[<>:"/\\|?*]/g, '')  // 只移除文件系统不允许的字符
