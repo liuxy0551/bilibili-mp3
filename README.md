@@ -1,12 +1,14 @@
-# Bilibili 视频转 MP3 Web 应用
+# bilibili 音频提取
 
-一个用于下载 Bilibili 视频并转换为 MP3 音频的 Web 应用。
+从 bilibili 视频中提取音频并转换为 MP3 格式的 Web 应用。
 
 ## 功能特性
 
-- 支持单个/多个 Bilibili 视频 URL 下载
-- 实时显示下载和转换进度
+- 支持单个/多个 bilibili 视频音频提取
+- 支持合集批量提取
+- 实时显示提取和转换进度
 - 支持自定义文件命名规则
+- 支持深色/浅色主题切换
 - 现代简约的 UI 设计
 - 支持 Docker 一键部署
 
@@ -16,8 +18,8 @@
 
 ```bash
 # 克隆项目
-git clone <repository-url>
-cd bilibili-mp3-web
+git clone https://github.com/liuxy0551/bilibili-mp3.git
+cd bilibili-mp3
 
 # 启动服务
 docker-compose up -d
@@ -49,7 +51,7 @@ npm run dev
 ## 项目结构
 
 ```
-bilibili-mp3-web/
+bilibili-mp3/
 ├── frontend/          # React 前端
 ├── backend/           # Node.js 后端
 ├── nginx/             # Nginx 配置
@@ -60,15 +62,14 @@ bilibili-mp3-web/
 ## API 文档
 
 ### POST /api/download
-开始下载任务
+开始提取任务
 
 **请求体:**
 ```json
 {
   "url": "https://www.bilibili.com/video/BV...",
   "options": {
-    "naming": "TITLE-AUTHOR-DATE",
-    "threads": 10,
+    "naming": "INDEX-TITLE-AUTHOR",
     "skipMp3": false
   }
 }
@@ -82,6 +83,9 @@ bilibili-mp3-web/
 }
 ```
 
+### POST /api/download-collection
+开始合集提取任务
+
 ### GET /api/tasks
 获取所有任务列表
 
@@ -90,6 +94,9 @@ bilibili-mp3-web/
 
 ### DELETE /api/tasks/:id
 取消任务
+
+### DELETE /api/tasks
+清除所有任务
 
 ### GET /api/download/:id/file
 下载 MP3 文件
@@ -107,6 +114,10 @@ bilibili-mp3-web/
 | PORT | 后端端口 | 3000 |
 | NODE_ENV | 运行环境 | development |
 | DOWNLOAD_DIR | 下载目录 | ./downloads |
+
+## 致谢
+
+基于 [bilibili-video2mp3](https://github.com/wxsms/bilibili-video2mp3) 项目开发。
 
 ## 许可证
 

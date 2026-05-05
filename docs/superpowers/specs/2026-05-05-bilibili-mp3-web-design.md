@@ -1,8 +1,8 @@
-# Bilibili 视频转 MP3 Web 应用设计文档
+# bilibili 音频提取 Web 应用设计文档
 
 ## 项目概述
 
-基于 bilibili-video2mp3 项目开发一个 Web 应用，用户可以通过网页界面下载 bilibili 视频的音频，并支持 docker compose 一键部署。
+基于 bilibili-video2mp3 项目开发一个 Web 应用，用户可以通过网页界面从 bilibili 视频中提取音频，并支持 docker compose 一键部署。
 
 ## 架构设计
 
