@@ -3,7 +3,7 @@ import { io, Socket } from 'socket.io-client'
 import { Task } from '../types'
 
 interface UseWebSocketOptions {
-  onTaskProgress?: (taskId: string, progress: number) => void
+  onTaskProgress?: (taskId: string, progress: number, status?: string) => void
   onTaskComplete?: (taskId: string, task: Task) => void
   onTaskError?: (taskId: string, error: string) => void
 }
@@ -26,8 +26,8 @@ export function useWebSocket(options: UseWebSocketOptions) {
     })
 
     if (options.onTaskProgress) {
-      socket.on('task-progress', ({ taskId, progress }) => {
-        options.onTaskProgress!(taskId, progress)
+      socket.on('task-progress', ({ taskId, progress, status }) => {
+        options.onTaskProgress!(taskId, progress, status)
       })
     }
 
