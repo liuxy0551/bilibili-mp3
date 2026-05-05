@@ -93,10 +93,13 @@ async function processDownload(taskId: string, url: string, options?: { naming?:
     })
 
     if (!options?.skipMp3) {
-      taskManager.updateTask(taskId, { status: 'converting', progress: 100 })
-      io.emit('task-progress', { taskId, progress: 100, status: 'converting' })
+      taskManager.updateTask(taskId, { status: 'converting', progress: 0 })
+      io.emit('task-progress', { taskId, progress: 0, status: 'converting' })
 
-      await convertToMp3(flvFile, mp3File)
+      await convertToMp3(flvFile, mp3File, (percent) => {
+        taskManager.updateTask(taskId, { progress: percent })
+        io.emit('task-progress', { taskId, progress: percent, status: 'converting' })
+      })
 
       fs.unlinkSync(flvFile)
     }
