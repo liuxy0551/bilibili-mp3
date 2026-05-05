@@ -3,10 +3,11 @@ import { clsx } from 'clsx'
 interface ProgressBarProps {
   progress: number
   status: string
+  filename?: string
   className?: string
 }
 
-export default function ProgressBar({ progress, status, className }: ProgressBarProps) {
+export default function ProgressBar({ progress, status, filename, className }: ProgressBarProps) {
   const getColor = () => {
     switch (status) {
       case 'downloading':
@@ -29,9 +30,9 @@ export default function ProgressBar({ progress, status, className }: ProgressBar
       case 'downloading':
         return `提取中 ${progress}%`
       case 'converting':
-        return '转换中'
+        return `转换中 ${progress}%`
       case 'completed':
-        return '已完成'
+        return filename ? `已完成 · ${filename}` : '已完成'
       case 'error':
         return '失败'
       default:
@@ -42,10 +43,10 @@ export default function ProgressBar({ progress, status, className }: ProgressBar
   return (
     <div className={clsx('w-full', className)}>
       <div className="flex justify-between items-center mb-1">
-        <span className="text-xs font-medium text-gray-700 dark:text-gray-300">
+        <span className="text-xs font-medium text-gray-700 dark:text-gray-300 truncate max-w-[80%]">
           {getLabel()}
         </span>
-        {status === 'downloading' && (
+        {(status === 'downloading' || status === 'converting') && (
           <span className="text-xs font-medium text-gray-500">
             {progress}%
           </span>

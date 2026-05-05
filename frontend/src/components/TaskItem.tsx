@@ -2,7 +2,7 @@ import { Task } from '../types'
 import { useTaskContext } from '../context/TaskContext'
 import { getDownloadUrl } from '../services/api'
 import ProgressBar from './ProgressBar'
-import { Download, X, Music, Video, AlertCircle, CheckCircle, Loader } from 'lucide-react'
+import { Download, X, Music, AlertCircle, CheckCircle, Loader } from 'lucide-react'
 import { clsx } from 'clsx'
 
 interface TaskItemProps {
@@ -79,20 +79,17 @@ export default function TaskItem({ task }: TaskItemProps) {
 
       {task.status !== 'pending' && (
         <div className="mt-3">
-          <ProgressBar progress={task.progress} status={task.status} />
+          <ProgressBar 
+            progress={task.progress} 
+            status={task.status} 
+            filename={task.status === 'completed' ? task.filename : undefined}
+          />
         </div>
       )}
 
       {task.error && (
         <div className="mt-2 p-2 bg-red-50 dark:bg-red-900/20 rounded text-xs text-red-600 dark:text-red-400">
           {task.error}
-        </div>
-      )}
-
-      {task.status === 'completed' && task.filename && (
-        <div className="mt-2 flex items-center text-xs text-gray-500 dark:text-gray-400">
-          <Video className="h-3 w-3 mr-1" />
-          {task.filename}
         </div>
       )}
     </div>
