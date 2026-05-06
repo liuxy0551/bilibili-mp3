@@ -1,0 +1,25 @@
+frontend/src/context/TaskContext.tsx
+  b5c412ec2653d339 31-35
+backend/src/services/downloadService.ts
+  b5c412ec2653d339 51-57,60
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "1893b9f5e5ad07d1cc308ce9d3d393166e916dbe",
+  "prompts": {
+    "b5c412ec2653d339": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_2093d55f7ffeJmFNnVtrXvHtlt",
+        "model": "mimo/mimo-v2.5-pro"
+      },
+      "human_author": "liuyi",
+      "messages": [],
+      "total_additions": 13,
+      "total_deletions": 2,
+      "accepted_lines": 13,
+      "overriden_lines": 0
+    }
+  }
+}
