@@ -1,0 +1,25 @@
+frontend/src/types/index.ts
+  6ff7a239aec778ae 1-24
+frontend/src/services/api.ts
+  6ff7a239aec778ae 1-47
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "218e4496b9e66a4aa52e255896f7e5c9aaf7c5e7",
+  "prompts": {
+    "6ff7a239aec778ae": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_20925f641ffeeIdPLKV9RmM5px",
+        "model": "mimo/mimo-v2.5-pro"
+      },
+      "human_author": "liuyi",
+      "messages": [],
+      "total_additions": 71,
+      "total_deletions": 0,
+      "accepted_lines": 71,
+      "overriden_lines": 0
+    }
+  }
+}
