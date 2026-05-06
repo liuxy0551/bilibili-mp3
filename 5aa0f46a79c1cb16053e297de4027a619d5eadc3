@@ -1,0 +1,33 @@
+backend/src/index.ts
+  92a19c324b1a0d28 1-34
+backend/tsconfig.json
+  92a19c324b1a0d28 1-19
+backend/package.json
+  92a19c324b1a0d28 1-29
+backend/src/types/index.ts
+  92a19c324b1a0d28 1-32
+backend/src/websocket/socketHandler.ts
+  92a19c324b1a0d28 1-11
+backend/src/routes/download.ts
+  92a19c324b1a0d28 1-5
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "6d4b91a4eafdfd812e4892f3aa4d8a306045cd17",
+  "prompts": {
+    "92a19c324b1a0d28": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_2091cd70cffet6VUGz2cDqSEgo",
+        "model": "mimo/mimo-v2.5-pro"
+      },
+      "human_author": "liuyi",
+      "messages": [],
+      "total_additions": 130,
+      "total_deletions": 0,
+      "accepted_lines": 130,
+      "overriden_lines": 0
+    }
+  }
+}
