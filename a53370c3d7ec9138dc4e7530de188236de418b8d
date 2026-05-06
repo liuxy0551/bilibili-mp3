@@ -1,0 +1,23 @@
+build-push.sh
+  b5c412ec2653d339 3-11,15,21-22
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "2421810ab97875a1173ed8f758f509ba63186f09",
+  "prompts": {
+    "b5c412ec2653d339": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_2093d55f7ffeJmFNnVtrXvHtlt",
+        "model": "mimo/mimo-v2.5-pro"
+      },
+      "human_author": "liuyi",
+      "messages": [],
+      "total_additions": 12,
+      "total_deletions": 2,
+      "accepted_lines": 12,
+      "overriden_lines": 0
+    }
+  }
+}
